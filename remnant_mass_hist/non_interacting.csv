@@ -1,0 +1,5 @@
+Name,Mass,err_plus,err_minus,source
+#2MASS J05215658+4359220,3.3,2.8,0.7,Thompson et al. 2019
+VFTS 243,8.65,1.45,1.45,Shenar et al. 2022
+Gaia BH1,9.8,0.2,0.2,El-Badry et al. 2022
+Gaia BH2,8.9,0.3,0.3,El-Badry et al. 2023
