@@ -3,28 +3,25 @@ import pandas as pd
 
 import matplotlib.pyplot as plt
 
-from matplotlib.legend_handler import HandlerTuple
-
-
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/BH_NS_GWaves.csv"
+fin = "BH_NS_GWaves.csv"
 gwData = pd.read_csv(fin, header=0)
 
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/BH_NS_XRB.csv"
+fin = "BH_NS_XRB.csv"
 xrbData = pd.read_csv(fin, header=0)
 
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/BH_NS_ulens.csv"
+fin = "BH_NS_ulens.csv"
 ulensData = pd.read_csv(fin, header=0, comment="#")
 
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/NS_Andtoniadis.csv"
+fin = "NS_Antoniadis.csv"
 nsData = pd.read_csv(fin, header=0, comment="#")
 
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/non_interacting.csv"
+fin = "non_interacting.csv"
 noniData = pd.read_csv(fin, header=0, comment="#")
 
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/BH_NS_dark_DR3.csv"
+fin = "BH_NS_dark_DR3.csv"
 kkThDR3Data = pd.read_csv(fin, header=0, comment="#")
 
-fin = "/home/kasia/Documents/PhD/Thesis/Plot_BH_NS_mass/2021_gentille-fusillo_wd_cat_masses.csv"
+fin = "2021_gentille-fusillo_wd_cat_masses.csv"
 wdMass = pd.read_csv(fin, header=0)
 
 fig = plt.figure(figsize=(15,7))
@@ -48,20 +45,22 @@ mH = wdMass["MassH"].values[:]
 mHe = wdMass["MassHe"].values[:]
 mall = np.hstack((mH, mHe))
 
-massWD = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', color='plum', edgecolor='mediumvioletred', label="WD", zorder=0)
+massWD = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', color='silver', edgecolor='dimgrey', label="WD", zorder=0)
 
 m1 = gwData["mass_1_source"].values[:]
 m2 = gwData["mass_2_source"].values[:]
-mf = gwData["final_mass_source"].values[:]
-mall = np.hstack((np.hstack((m1, m2)), mf))
+m_fin = gwData["final_mass_source"].values[:]
+m_prim = np.hstack((m1, m2))
+
 
 m1 = nsData["Mass"].values[:]
-massNS = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='brown', color='lightcoral', label="NS")
+massNS = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='maroon', color='lightcoral', label="NS")
 
-massGWs = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='goldenrod', color='gold', label="GW")
+massGWs_prim = plt.hist(m_prim, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='goldenrod', color='gold', label="GW binary")
+massGWs_fin = plt.hist(m_fin, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='darkorange', color='sandybrown', label="GW final")
 
 m1 = xrbData["mass"].values[:]
-massXRBs = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='maroon',  color='firebrick', label="HMXRB")
+massXRBs = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='seagreen',  color='olivedrab', label="HMXRB")
 
 m1 = ulensData["mass"].values[:]
 massUlens = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='navy', color='cornflowerblue', label="Microlensing")
@@ -72,7 +71,7 @@ m1 = kkThDR3Data["mass"].values[:]
 # kkDR3mass = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='black', label="This work")
 
 m1 = noniData["Mass"].values[:]
-massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='olivedrab', edgecolor='black', label="Non-interacting")
+massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='darkmagenta', edgecolor='indigo', label="Non-interacting")
 
 for i in range(len(kkThDR3Data["mass"])):
     shift = 1. + i*0.22
@@ -123,6 +122,5 @@ plt.legend(fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left')
 # plt.legend([noni],["Non-interacting"], fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
 
 plt.savefig("masses_histogram_dark_fin.pdf", dpi=150, format='pdf')
-# plt.savefig("masses_histogram_kkPhD_ENG_tw.pdf", dpi=150, format='pdf')
 plt.show()
 

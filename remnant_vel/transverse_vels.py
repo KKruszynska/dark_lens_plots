@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.patches import Rectangle
 
-fin = "/home/kasia/Documents/PhD/Thesis/Summary/gdr3_darkmass_transverse_vels.csv"
+fin = "gdr3_darkmass_transverse_vels.csv"
 kkThDR3Data = pd.read_csv(fin, header=0, comment="#")
 
 fig = plt.figure(figsize=(15,7))
@@ -28,7 +28,7 @@ ax.add_patch(Rectangle(((6.03-1.04)*10**0, 37.61-5.13), ((1.04+1.19)*10**0), 5.1
              facecolor = 'red',
              fill=True,
              alpha = 0.6,
-             label="Lam et al. (2023)"))
+             label="Lam & Lu (2023)"))
 # plt.axhline(y=43.4, lw=3, color='firebrick', zorder=5)
 
 ax.tick_params(axis='both', which='major', labelsize=16)
@@ -42,10 +42,13 @@ for i in range(len(kkThDR3Data["mass"])):
     vt = kkThDR3Data["vt"].values[i]
     vt_err = [[kkThDR3Data["err_mn"].values[i]], [kkThDR3Data["err_pl"].values[i]]]
 # #
-    print(kkThDR3Data["event"].values[i], mass, mass_err, vt, vt_err)
+    #print(kkThDR3Data["event"].values[i], mass, mass_err, vt, vt_err)
 # #
     thwork = ax.errorbar(mass, vt, xerr=mass_err, yerr=vt_err,
                      c='black',  marker='o', markersize=10, zorder=10, ls='-')
+                     
+thwork = ax.errorbar(-1.0, -1.0, xerr=0.0001, yerr=0.0001,
+                     c='black',  marker='o', markersize=10, zorder=10, ls='-', label='This work')
 
 plt.xlabel(r'$M_L$ [$M_\odot$]', fontsize=26)
 plt.ylabel(r'$v_{t,L}$ [km/s]', fontsize=26)
