@@ -49,7 +49,8 @@
 
 - non_interacting:
   - El-Badry et al. 2023, https://ui.adsabs.harvard.edu/abs/2023MNRAS.521.4323E/abstract
-  - El-Badry et al. 2023, https://ui.adsabs.harvard.edu/abs/2023MNRAS.518.1057E/abstract
+  - El-Badry et al. 2023, https://ui.adsabs.harvard.edu/abs/2023MNRAS.518.1057E/abstract,
+    Chakrabarti et al. 2023, https://ui.adsabs.harvard.edu/abs/2023AJ....166....6C/abstract
   - Shenar et al. 2022, https://ui.adsabs.harvard.edu/abs/2022NatAs...6.1085S/abstract
 
 - NS_Antoniadis:
