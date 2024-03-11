@@ -45,7 +45,7 @@ mH = wdMass["MassH"].values[:]
 mHe = wdMass["MassHe"].values[:]
 mall = np.hstack((mH, mHe))
 
-massWD = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', color='silver', edgecolor='dimgrey', label="WD", zorder=0)
+massWD = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', color='plum', edgecolor='mediumvioletred', label="WD", zorder=0)
 
 m1 = gwData["mass_1_source"].values[:]
 m2 = gwData["mass_2_source"].values[:]
@@ -54,13 +54,13 @@ m_prim = np.hstack((m1, m2))
 
 
 m1 = nsData["Mass"].values[:]
-massNS = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='maroon', color='lightcoral', label="NS")
+massNS = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='brown', color='lightcoral', label="NS")
 
 massGWs_prim = plt.hist(m_prim, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='goldenrod', color='gold', label="GW binary")
-massGWs_fin = plt.hist(m_fin, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='darkorange', color='sandybrown', label="GW final")
+massGWs_fin = plt.hist(m_fin, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='darkslategrey', color='grey', label="GW final")
 
 m1 = xrbData["mass"].values[:]
-massXRBs = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='seagreen',  color='olivedrab', label="HMXRB")
+massXRBs = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='maroon',  color='firebrick', label="HMXRB")
 
 m1 = ulensData["mass"].values[:]
 massUlens = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor='navy', color='cornflowerblue', label="Microlensing")
@@ -71,18 +71,18 @@ m1 = kkThDR3Data["mass"].values[:]
 # kkDR3mass = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='black', label="This work")
 
 m1 = noniData["Mass"].values[:]
-massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='darkmagenta', edgecolor='indigo', label="Non-interacting")
+massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='olivedrab', edgecolor='black', label="Non-interacting")
 
-for i in range(len(kkThDR3Data["mass"])):
-    shift = 1. + i*0.22
-    m1 = kkThDR3Data["mass"].values[i]
-    m1_err = [[kkThDR3Data["error_mn"].values[i]], [kkThDR3Data["error_pl"].values[i]]]
+# for i in range(len(kkThDR3Data["mass"])):
+#     shift = 1. + i*0.22
+#     m1 = kkThDR3Data["mass"].values[i]
+#     m1_err = [[kkThDR3Data["error_mn"].values[i]], [kkThDR3Data["error_pl"].values[i]]]
 
-    kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
+#     kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
 
-m1 = kkThDR3Data["mass"].values[0]
-m1_err = [[kkThDR3Data["error_mn"].values[0]], [kkThDR3Data["error_pl"].values[0]]]
-kkDR3 = ax.errorbar(m1, 1, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14, label = "This work")
+# m1 = kkThDR3Data["mass"].values[0]
+# m1_err = [[kkThDR3Data["error_mn"].values[0]], [kkThDR3Data["error_pl"].values[0]]]
+# kkDR3 = ax.errorbar(m1, 1, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14, label = "This work")
 
 plt.axvline(x=1.4, ls = '--', color='black')
 plt.axvline(x=2.1, ls = '--', color='black')
@@ -121,6 +121,6 @@ plt.legend(fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left')
 # plt.legend([ulens],["Microlensing"], fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
 # plt.legend([noni],["Non-interacting"], fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
 
-plt.savefig("masses_histogram_dark_fin.pdf", dpi=150, format='pdf')
+plt.savefig("masses_histogram_dark_prel.pdf", dpi=150, format='pdf')
 plt.show()
 
