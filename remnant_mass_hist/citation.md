@@ -48,6 +48,7 @@
   - Val-Baker et al. 2007, https://ui.adsabs.harvard.edu/abs/2007AIPC..924..530V/abstract
 
 - non_interacting:
+  - El-Badry et al. 2024, https://ui.adsabs.harvard.edu/abs/2024arXiv240206722E/abstract
   - El-Badry et al. 2023, https://ui.adsabs.harvard.edu/abs/2023MNRAS.521.4323E/abstract
   - El-Badry et al. 2023, https://ui.adsabs.harvard.edu/abs/2023MNRAS.518.1057E/abstract,
     Chakrabarti et al. 2023, https://ui.adsabs.harvard.edu/abs/2023AJ....166....6C/abstract

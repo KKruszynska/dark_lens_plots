@@ -19,6 +19,7 @@ fin = "non_interacting.csv"
 noniData = pd.read_csv(fin, header=0, comment="#")
 
 fin = "BH_NS_dark_DR3.csv"
+# fin = "BH_NS_KKThesis_DR3_xshooter.csv"
 kkThDR3Data = pd.read_csv(fin, header=0, comment="#")
 
 fin = "2021_gentille-fusillo_wd_cat_masses.csv"
@@ -31,7 +32,7 @@ ax.set_xscale('log', base=10)
 ax.set_yscale('log', base=10)
 
 plt.xlabel(r'Mass [$M_\odot$]', fontsize=16)
-# plt.ylabel(r'Masa [$M_\odot$]', fontsize=16)
+plt.ylabel(r'Number', fontsize=16)
 
 plt.xlim(5.*10**(-1),2.*10.**2)
 # plt.xlim(-5, 465)
@@ -71,18 +72,30 @@ m1 = kkThDR3Data["mass"].values[:]
 # kkDR3mass = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='black', label="This work")
 
 m1 = noniData["Mass"].values[:]
-massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='olivedrab', edgecolor='black', label="Non-interacting")
+massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='darkgreen', edgecolor='black', label="Non-interacting")
 
 # for i in range(len(kkThDR3Data["mass"])):
 #     shift = 1. + i*0.22
 #     m1 = kkThDR3Data["mass"].values[i]
 #     m1_err = [[kkThDR3Data["error_mn"].values[i]], [kkThDR3Data["error_pl"].values[i]]]
-
+#
 #     kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
-
+#
 # m1 = kkThDR3Data["mass"].values[0]
 # m1_err = [[kkThDR3Data["error_mn"].values[0]], [kkThDR3Data["error_pl"].values[0]]]
 # kkDR3 = ax.errorbar(m1, 1, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14, label = "This work")
+
+# for i in range(len(kkThDR3Data["mass"])):
+#     shift = 1. + i*0.22
+#     m1 = kkThDR3Data["mass"].values[i]
+#     m1_err = [[kkThDR3Data["error_mn"].values[i]], [kkThDR3Data["error_pl"].values[i]]]
+#
+#     kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
+#     # ax.annotate(kkThDR3Data["event"].values[i], (m1, shift+0.4), fontsize=14)
+#
+# m1 = kkThDR3Data["mass"].values[0]
+# m1_err = [[kkThDR3Data["error_mn"].values[0]], [kkThDR3Data["error_pl"].values[0]]]
+# kkDR3 = ax.errorbar(m1, 1, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14, label = "Dark lens candidates")
 
 plt.axvline(x=1.4, ls = '--', color='black')
 plt.axvline(x=2.1, ls = '--', color='black')
