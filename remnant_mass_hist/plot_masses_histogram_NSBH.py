@@ -20,7 +20,7 @@ noniData = pd.read_csv(fin, header=0, comment="#")
 
 fin = "BH_NS_dark_DR3.csv"
 # fin = "BH_NS_KKThesis_DR3_xshooter.csv"
-kkThDR3Data = pd.read_csv(fin, header=0, comment="#")
+kkThDR3Data = pd.read_csv(fin, header=0)
 
 fin = "2021_gentille-fusillo_wd_cat_masses.csv"
 wdMass = pd.read_csv(fin, header=0)
@@ -68,21 +68,21 @@ massUlens = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', edgecolor=
 
 # colors = ["lightcoral", "sandybrown", "darkkhaki", "mediumaquamarine", "darkcyan", "slateblue"]
 
-m1 = kkThDR3Data["mass"].values[:]
+# m1 = kkThDR3Data["M_L"].values[:]
 # kkDR3mass = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='black', label="This work")
 
 m1 = noniData["Mass"].values[:]
 massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='darkgreen', edgecolor='black', label="Non-interacting")
 
-# for i in range(len(kkThDR3Data["mass"])):
-#     shift = 1. + i*0.22
-#     m1 = kkThDR3Data["mass"].values[i]
-#     m1_err = [[kkThDR3Data["error_mn"].values[i]], [kkThDR3Data["error_pl"].values[i]]]
+for i in range(len(kkThDR3Data["ML"])):
+    shift = 1.5 + i*1.22
+    m1 = kkThDR3Data["ML"].values[i]
+    m1_err = [[kkThDR3Data["err_ML_mn"].values[i]], [kkThDR3Data["err_ML_pl"].values[i]]]
+
+    kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
 #
-#     kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
-#
-# m1 = kkThDR3Data["mass"].values[0]
-# m1_err = [[kkThDR3Data["error_mn"].values[0]], [kkThDR3Data["error_pl"].values[0]]]
+# m1 = kkThDR3Data["ML"].values[0]
+# m1_err = [[kkThDR3Data["err_ML_mn"].values[0]], [kkThDR3Data["err_ML_pl"].values[0]]]
 # kkDR3 = ax.errorbar(m1, 1, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14, label = "This work")
 
 # for i in range(len(kkThDR3Data["mass"])):
@@ -134,6 +134,8 @@ plt.legend(fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left')
 # plt.legend([ulens],["Microlensing"], fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
 # plt.legend([noni],["Non-interacting"], fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
 
-plt.savefig("masses_histogram_dark_prel.pdf", dpi=150, format='pdf')
+plt.ylim(10**0, 10**5)
+
+plt.savefig("masses_hist_dark.pdf", dpi=150, format='pdf')
 plt.show()
 
