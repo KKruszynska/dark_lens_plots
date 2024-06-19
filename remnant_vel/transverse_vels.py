@@ -13,7 +13,7 @@ plt.grid(False)
 ax.set_xscale('log', base=10)
 # ax.set_yscale('linear')
 
-plt.xlim(4.4*10**(-1),1.2*10.**1)
+plt.xlim(4.4*10**(-1),1.2*10.**2)
 # plt.ylim(-5, 400)
 
 ax.add_patch(Rectangle((2.8*10**(-1), 269.-25.), (2.5*10.**2-2.8*10**(-1)), 2*25,
@@ -23,7 +23,7 @@ ax.add_patch(Rectangle((2.8*10**(-1), 269.-25.), (2.5*10.**2-2.8*10**(-1)), 2*25
              label="Hobbs et al. (2005)"))
 
 ax.add_patch(Rectangle(((6.03-1.04)*10**0, 37.61-5.13), ((1.04+1.19)*10**0), 5.13+5.12,
-             facecolor = 'cornflowerblue',
+             facecolor = 'darkblue',
              fill=True,
              alpha = 0.7,
              label="Lam & Lu (2023)",
@@ -47,15 +47,24 @@ for i in range(len(kkThDR3Data["ML"])):
     # #
         #print(kkThDR3Data["event"].values[i], mass, mass_err, vt, vt_err)
     # #
+        if(kkThDR3Data["#GaiaDR3-ULENS"].values[i][-1] == "+"):
+            marker = "o"
+        else:
+            marker = "d"
         thwork = ax.errorbar(mass, vt, xerr=mass_err, yerr=vt_err,
-                         c='black',  marker='o', markersize=10, zorder=10, ls='-')
+                         c='black',  marker=marker, markersize=10, zorder=10)
 #
-thwork = ax.errorbar(-1.0, -1.0, xerr=0.0001, yerr=0.0001,
-                     c='black',  marker='o', markersize=10, zorder=10, ls='-', label='This work')
+thwork1 = ax.errorbar(-1.0, -1.0, xerr=0.0001, yerr=0.0001,
+                     c='black',  marker='o', markersize=10, zorder=10)
+thwork2 = ax.errorbar(-1.0, -1.0, xerr=0.0001, yerr=0.0001,
+                     c='black',  marker='d', markersize=10, zorder=10)
 
 plt.xlabel(r'$M_L$ [$M_\odot$]', fontsize=26)
 plt.ylabel(r'$v_{t,L}$ [km/s]', fontsize=26)
 ax.tick_params(axis='both', which='major', labelsize=20)
+handles, labels = ax.get_legend_handles_labels()
+handles.append((thwork1, thwork2))
+labels.append("This work")
 plt.legend(loc='best', fontsize=20)
 plt.savefig("gdr3_dark_transvels.pdf", dpi=150, format='pdf')
 plt.show()

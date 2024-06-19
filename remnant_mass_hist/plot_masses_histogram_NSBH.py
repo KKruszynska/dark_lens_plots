@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 
 import matplotlib.pyplot as plt
+from matplotlib.legend_handler import HandlerTuple
 
 fin = "BH_NS_GWaves.csv"
 gwData = pd.read_csv(fin, header=0)
@@ -46,7 +47,7 @@ mH = wdMass["MassH"].values[:]
 mHe = wdMass["MassHe"].values[:]
 mall = np.hstack((mH, mHe))
 
-massWD = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', color='plum', edgecolor='mediumvioletred', label="WD", zorder=0)
+massWD = plt.hist(mall, bins=bins, alpha=0.6, histtype='stepfilled', color='plum', edgecolor='mediumvioletred', zorder=0, label="WD")
 
 m1 = gwData["mass_1_source"].values[:]
 m2 = gwData["mass_2_source"].values[:]
@@ -76,14 +77,19 @@ massNoni = plt.hist(m1, bins=bins, alpha=0.6, histtype='stepfilled', color='dark
 
 for i in range(len(kkThDR3Data["ML"])):
     shift = 1.5 + i*1.22
+    if(kkThDR3Data["#GaiaDR3-ULENS"].values[i][-1] == "+"):
+        marker = "o"
+    else:
+        marker = "d"
     m1 = kkThDR3Data["ML"].values[i]
     m1_err = [[kkThDR3Data["err_ML_mn"].values[i]], [kkThDR3Data["err_ML_pl"].values[i]]]
 
-    kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14)
+    kkDR3 = ax.errorbar(m1, shift, xerr=m1_err, c='black', marker=marker, markersize=8, zorder=14)
 #
-# m1 = kkThDR3Data["ML"].values[0]
-# m1_err = [[kkThDR3Data["err_ML_mn"].values[0]], [kkThDR3Data["err_ML_pl"].values[0]]]
-# kkDR3 = ax.errorbar(m1, 1, xerr=m1_err, c='black', marker='o', markersize=5, zorder=14, label = "This work")
+m1 = -1
+m1_err = [[kkThDR3Data["err_ML_mn"].values[0]], [kkThDR3Data["err_ML_pl"].values[0]]]
+kkDR31 = ax.errorbar(m1, -1, xerr=m1_err, c='black', marker='o', markersize=8, zorder=14)
+kkDR32 = ax.errorbar(m1, -1, xerr=m1_err, c='black', marker='d', markersize=8, zorder=14)
 
 # for i in range(len(kkThDR3Data["mass"])):
 #     shift = 1. + i*0.22
@@ -119,11 +125,12 @@ ax.set_position([box.x0, box.y0, box.width * 0.8, box.height])
 #            ["GW", "HMXB", "NS (different methods)", "Non-interacting", "Microlensing"],
 #            fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
 
-plt.legend(fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left')
-# plt.legend([kkDR3, massGWs, xrb, ulens, noni, ns1, ns2, ns3, ns4, ns5, ns6, ],
-#            ["This work", "GW", "HMXB", "Microlensing", "Non-interacting",
-#             "LMXB", "Eclipsing MSP", "NS-NS binaries", "NS-WD binaries", "MSP-MS binaries", "MSP in a triple system"],
-#            fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
+# plt.legend(fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left')
+handles, labels = ax.get_legend_handles_labels()
+handles.append((kkDR31, kkDR32))
+labels.append("This work")
+plt.legend(handles=handles, labels=labels, fontsize=18, bbox_to_anchor=(1, 0.5), loc='center left',
+           handler_map={tuple: HandlerTuple(ndivide=None)})
 
 #PL
 #plt.legend([kkDR3, (primary,final), xrb, ulens, noni, ns1, ns2, ns3, ns4, ns5, ns6],["Ta praca", "GW", "HMXB", "Mikrosoczewkowanie", "Układy z\nnieoddziałującymi\nobiektami", "LMXB", "Układy zaćmieniowe PM", "Układy podwójne NS-NS", "Układy podwójne NS-WD", "Układy podwójne PM-MS", "PM w układzie potrójnym"], fontsize=16, handler_map={tuple: HandlerTuple(ndivide=None)}, bbox_to_anchor=(1, 0.5), loc='center left')
