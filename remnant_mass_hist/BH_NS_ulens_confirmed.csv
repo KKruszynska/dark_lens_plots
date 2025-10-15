@@ -1,0 +1,24 @@
+event,mass,error_pl,error_mn,citation
+LAWD 37,0.56,0.08,0.08, McGill et al 2023
+OB110462,6.03,1.19,1.04,Lam&Lu 2023
+#Gaia18cbf+,2.65,5.09,1.48, Kruszynska et al. 2022
+#GaiaDR3-ULENS-001+,1,0.23,0.18, Jablonska et al. 2022
+#VVV-2013-BLG-0324,1.46,1.13,0.71, Kaczmarek et al. 2022
+#VVV-2013-BLG-0460,1.63,1.15,0.7, Kaczmarek et al. 2022
+Stein 2051 B,0.675,0.051,0.051, Sahu et al. 2017
+#PAR-02,1,0.5,0.4,Mroz&Wyrzykowski 2021
+#PAR-03,1.1,1,0.6,Mroz&Wyrzykowski 2021
+#PAR-04+,0.7,0.9,0.4,Mroz&Wyrzykowski 2021
+#PAR-05,2.2,1,0.7,Mroz&Wyrzykowski 2021
+#PAR-07,1.1,1.3,0.7,Mroz&Wyrzykowski 2021
+#PAR-13+,6,2.1,1.8,Mroz&Wyrzykowski 2021
+#PAR-15+,0.8,0.6,0.4,Mroz&Wyrzykowski 2021
+#PAR-30+,3.7,1.9,1.8,Mroz&Wyrzykowski 2021
+
+#GaiaDR3-ULENS-001-,0.7,0.17,0.13
+#Gaia18cbf-,1.71,3.78,1.06
+#GaiaDR3-ULENS-001-,0.7,0.17,0.13
+#PAR-04-,1,1.2,0.6
+#PAR-13-,5.5,2.1,1.8
+#PAR-15-,0.6,0.4,0.3
+#PAR-30-,3.7,1.9,1.5
